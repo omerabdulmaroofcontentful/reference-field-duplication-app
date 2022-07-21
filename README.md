@@ -4,6 +4,7 @@ This project was bootstrapped with [Create Contentful App](https://github.com/co
 ## Use case
 Using this Field Level application you can duplicate the entry at the reference entry level
 
+<img src="./1.png">
 ## Available Scripts
 
 In the project directory, you can run:

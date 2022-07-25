@@ -12,9 +12,9 @@ const Field = () => {
   sdk.window.updateHeight(300)
   
   async function removeEntry(event:any, param:any) {
-    let fieldCurrentValue = await sdk.entry.fields.referencesField.getValue()
+    let fieldCurrentValue = await sdk.field.getValue()//sdk.entry.fields.referencesField.getValue()
     fieldCurrentValue.splice(param.index,1)
-    await sdk.entry.fields.referencesField.setValue(fieldCurrentValue)
+    await sdk.field.setValue(fieldCurrentValue)
   }
   
   async function  duplicateEntry(event:any, param:any){
@@ -23,7 +23,7 @@ const Field = () => {
     let result = await cma.entry.create({contentTypeId:param.contentType.sys.id},{fields})
     
     //reference new entry
-    let fieldCurrentValue = await sdk.entry.fields.referencesField.getValue()
+    let fieldCurrentValue = await sdk.field.getValue()
     
     fieldCurrentValue.push({
       sys:{
@@ -33,7 +33,7 @@ const Field = () => {
       }
     })
     
-    await sdk.entry.fields.referencesField.setValue(fieldCurrentValue)
+    await sdk.field.setValue(fieldCurrentValue)
   }
   
   function openEntry(props: any) {
@@ -56,7 +56,7 @@ const Field = () => {
         status={entryStatus(props)}
         contentType={props.contentType?.name}
         title={entryTitle(props)}
-        description=""
+        description="Description"
         actions={[
           <MenuItem key="Open Entry" onClick={() => openEntry(props)}>
             Open Entry
@@ -74,6 +74,7 @@ const Field = () => {
     return <>
      <GlobalStyles/>
       <MultipleEntryReferenceEditor 
+        
         sdk={sdk}
         viewType="card"
         isInitiallyDisabled={false}
